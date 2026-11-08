@@ -21,7 +21,7 @@
   }
   function paint(){
     var word=document.getElementById("status-word"), next=document.getElementById("status-next");
-    var chip=document.getElementById("status-chip");
+    var chip=document.getElementById("status-chip"), next2=document.getElementById("status-next2");
     if(!word) return;
     var d=bostonNow(), t=d.h*60+d.m;
     var open=d.day>=1&&d.day<=6&&t>=OPEN_H*60+OPEN_M&&t<CLOSE_H*60+CLOSE_M;
@@ -45,9 +45,10 @@
     if(hero) hero.classList.add("loaded");
     if(board){
       if("IntersectionObserver" in window){
+        board.classList.add("pre");
         new IntersectionObserver(function(es,ob){es.forEach(function(e){
-          if(e.isIntersecting){board.classList.add("up");ob.disconnect();}
-        });},{threshold:.35}).observe(board);
+          if(e.isIntersecting){board.classList.remove("pre");board.classList.add("up");ob.disconnect();}
+        });},{threshold:.2}).observe(board);
       }else{board.classList.add("up");}
     }
   }

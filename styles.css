@@ -89,10 +89,11 @@ a:hover{color:var(--tomato)}
   max-width:640px;margin:0 auto;background:var(--chalk);color:var(--chalk-white);
   border:6px solid var(--terra);box-shadow:0 14px 34px rgba(46,32,19,.35);
   padding:2rem 2rem 1.6rem;border-radius:4px;
-  transform:rotateX(-55deg) translateY(30px);opacity:0;
-  transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .6s ease;
 }
+.board.pre{transform:rotateX(-55deg) translateY(30px);opacity:0}
 .board.up{transform:rotateX(0) translateY(0);opacity:1}
+.board.pre{transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .6s ease}
+.board.up{transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .6s ease}
 .board .chalk-hand{font-family:var(--font-chalk);font-size:1.35rem;color:#D8CDB6}
 .board h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.6rem,4vw,2.3rem);
   color:var(--wall);margin:.1rem 0 .5rem}
@@ -201,6 +202,6 @@ footer .credit{margin-left:auto}
   html{scroll-behavior:auto}
   .hero .line span{animation:none;transform:none}
   .hero-photo img{transition:none;transform:none}
-  .board{transition:none;transform:none;opacity:1}
+  .board,.board.pre{transition:none;transform:none;opacity:1}
   .plate,.plate:hover{transition:none;transform:none}
 }
