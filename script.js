@@ -35,6 +35,7 @@
       label="Closed for today";
       msg="They stop when the trays are empty. Cash only, no exceptions.";
       if(chip){chip.textContent=nextOpen(d);}
+      if(next2){next2.textContent=nextOpen(d);}
     }
     word.textContent=label;
     word.classList.toggle("sold",!open);
