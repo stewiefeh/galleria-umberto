@@ -46,9 +46,12 @@
     if(board){
       if("IntersectionObserver" in window){
         board.classList.add("pre");
+        var shown=false;
+        function show(){if(shown)return;shown=true;board.classList.remove("pre");board.classList.add("up");}
         new IntersectionObserver(function(es,ob){es.forEach(function(e){
-          if(e.isIntersecting){board.classList.remove("pre");board.classList.add("up");ob.disconnect();}
+          if(e.isIntersecting){show();ob.disconnect();}
         });},{threshold:.2}).observe(board);
+        setTimeout(show,1600);
       }else{board.classList.add("up");}
     }
   }
