@@ -1,0 +1,206 @@
+/* Galleria Umberto — North End, Boston. Identity built from the room itself:
+   butter-yellow walls, tomato red, terracotta floor, espresso wood, paper plates. */
+:root{
+  --wall:#E9C13F;        /* the dining-room wall yellow */
+  --wall-deep:#D8A92B;
+  --tomato:#C2352B;      /* sauce, the Coca-Cola sign */
+  --tomato-dark:#8E231C;
+  --terra:#A85B32;       /* the floor tile */
+  --espresso:#2E2013;    /* tables, text */
+  --paper:#FBF4E1;       /* paper plates */
+  --chalk:#211D18;       /* the menu board */
+  --chalk-white:#F4EEE1;
+  --focus:#1D3A8A;
+  --font-display:"Gloock",Georgia,serif;
+  --font-body:"Archivo",Helvetica,Arial,sans-serif;
+  --font-chalk:"Caveat",cursive;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--paper);
+  color:var(--espresso);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:var(--tomato-dark)}
+a:hover{color:var(--tomato)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* ---------- checkerboard divider: the floor tile ---------- */
+.tiles{
+  height:22px;
+  background:
+    repeating-linear-gradient(90deg,var(--terra) 0 22px,var(--paper) 22px 44px);
+  border-top:3px solid var(--espresso);
+  border-bottom:3px solid var(--espresso);
+}
+.tiles.thin{height:14px}
+
+/* ---------- top bar ---------- */
+.topbar{
+  background:var(--espresso);
+  color:var(--chalk-white);
+  display:flex;flex-wrap:wrap;gap:.4em 1.6em;align-items:baseline;
+  padding:.7em 24px;font-size:.95rem;
+}
+.topbar .brand{
+  font-family:var(--font-display);font-size:1.25rem;letter-spacing:.01em;
+  color:var(--wall);margin-right:auto;
+}
+.topbar a{color:var(--chalk-white);text-decoration:none}
+.topbar a:hover{color:var(--wall);text-decoration:underline}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--chalk);color:var(--paper);overflow:hidden}
+.hero-photo{position:relative;max-height:62vh;overflow:hidden}
+.hero-photo img{width:100%;height:min(62vh,640px);object-fit:cover;object-position:center 30%;
+  filter:saturate(1.05) contrast(1.02);
+  transform:scale(1.06);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.hero.loaded .hero-photo img{transform:scale(1)}
+.hero-photo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(33,29,24,0) 45%,rgba(33,29,24,.88) 100%)}
+.hero-copy{position:relative;padding:0 24px;margin-top:-9rem;max-width:1080px;margin-left:auto;margin-right:auto}
+.hero h1{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(2.6rem,7.5vw,5.2rem);line-height:1.02;max-width:14ch;
+  color:var(--paper);text-shadow:0 2px 18px rgba(0,0,0,.45);
+}
+.hero .line{display:block;overflow:hidden}
+.hero .line span{display:inline-block;transform:translateY(110%);
+  animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .line:nth-child(2) span{animation-delay:.12s}
+.hero .line:nth-child(3) span{animation-delay:.24s}
+@keyframes rise{to{transform:translateY(0)}}
+.hero-sub{margin:1.1rem 0 0;max-width:52ch;font-size:1.06rem;color:#EFE6D2}
+.hero-meta{display:flex;flex-wrap:wrap;gap:.55em;padding:1.2rem 0 2.2rem;font-size:.95rem}
+.hero-meta .chip{
+  background:rgba(251,244,225,.13);border:1px solid rgba(251,244,225,.35);
+  border-radius:2px;padding:.35em .8em;color:var(--paper);text-decoration:none;
+}
+.hero-meta a.chip:hover{background:var(--wall);color:var(--espresso);border-color:var(--wall)}
+
+/* ---------- counter board: the one big moment ---------- */
+.board-outer{background:var(--wall);padding:3.2rem 24px 3.6rem;perspective:900px}
+.board{
+  max-width:640px;margin:0 auto;background:var(--chalk);color:var(--chalk-white);
+  border:6px solid var(--terra);box-shadow:0 14px 34px rgba(46,32,19,.35);
+  padding:2rem 2rem 1.6rem;border-radius:4px;
+  transform:rotateX(-55deg) translateY(30px);opacity:0;
+  transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .6s ease;
+}
+.board.up{transform:rotateX(0) translateY(0);opacity:1}
+.board .chalk-hand{font-family:var(--font-chalk);font-size:1.35rem;color:#D8CDB6}
+.board h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.6rem,4vw,2.3rem);
+  color:var(--wall);margin:.1rem 0 .5rem}
+.board .status-word{
+  font-family:var(--font-chalk);font-size:clamp(2.2rem,6vw,3.4rem);line-height:1.1;
+  color:#F7D46C;margin:.2rem 0 .2rem;
+}
+.board .status-word.sold{color:#F08A7A}
+.board p{font-size:.98rem;color:#D8CDB6;max-width:46ch}
+.board .next{margin-top:.8rem;font-family:var(--font-chalk);font-size:1.3rem;color:#F7D46C}
+
+/* ---------- section scaffolding ---------- */
+section{padding:3.4rem 0}
+section h2{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.08;margin-bottom:1rem;
+}
+.lede{max-width:62ch;font-size:1.08rem}
+
+/* story */
+.story{background:var(--paper)}
+.story-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2.4rem;align-items:start}
+.story-side{background:var(--wall);border:3px solid var(--espresso);padding:1.4rem 1.4rem 1.2rem;border-radius:2px}
+.story-side h3{font-family:var(--font-display);font-weight:400;font-size:1.35rem;margin-bottom:.6rem}
+.story-side ul{list-style:none}
+.story-side li{padding:.45em 0;border-top:1.5px dashed rgba(46,32,19,.4);font-size:.98rem}
+.story-side li strong{display:block;font-size:.9rem}
+.story .since{
+  font-family:var(--font-display);font-size:clamp(3.4rem,9vw,6rem);line-height:1;
+  color:var(--tomato);margin:.2rem 0 .6rem;
+}
+.story .since small{display:block;font-family:var(--font-body);font-size:1rem;color:var(--espresso);
+  font-weight:600;letter-spacing:.02em;margin-top:.3rem}
+.cockerel{margin-top:1.6rem;border-left:4px solid var(--terra);padding:.2rem 0 .2rem 1rem;
+  font-size:.98rem;max-width:60ch}
+.cockerel em{font-style:normal;font-family:var(--font-chalk);font-size:1.25rem}
+
+/* menu — paper plates */
+.menu{background:var(--wall);border-top:3px solid var(--espresso);border-bottom:3px solid var(--espresso)}
+.menu .lede{color:var(--espresso)}
+.plates{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.6rem;margin-top:2rem}
+.plate{
+  background:var(--paper);border-radius:50%/38%;aspect-ratio:1/.92;
+  box-shadow:0 10px 24px rgba(46,32,19,.28),0 2px 0 rgba(46,32,19,.15);
+  padding:11% 12%;display:flex;flex-direction:column;justify-content:center;text-align:center;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1);
+}
+.plate:hover{transform:rotate(-1.6deg) translateY(-6px)}
+.plate h3{font-family:var(--font-display);font-weight:400;font-size:1.5rem;line-height:1.1}
+.plate p{font-size:.95rem;margin-top:.45rem;color:#4A3A26}
+.plate .ridges{display:block;margin:0 auto .5rem;width:64px;height:5px;
+  background:repeating-linear-gradient(90deg,rgba(168,91,50,.85) 0 4px,transparent 4px 8px)}
+.menu-note{margin-top:1.6rem;text-align:center;font-size:.95rem}
+.menu-note strong{font-weight:700}
+
+/* reviews */
+.reviews .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;margin-top:1.6rem}
+.review{background:#fff;border:2px solid var(--espresso);padding:1.2rem 1.2rem 1rem;border-radius:3px}
+.review .stars{color:var(--tomato);font-size:1.05rem;letter-spacing:.12em}
+.review blockquote{font-size:1rem;margin:.6rem 0 .8rem}
+.review cite{font-style:normal;font-size:.9rem;font-weight:600}
+.review .when{color:#6B5B45;font-weight:400}
+.reviews .source{margin-top:1.4rem;font-size:.95rem}
+
+/* visit */
+.visit{background:var(--espresso);color:var(--chalk-white)}
+.visit h2{color:var(--wall)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.2rem;margin-top:.6rem}
+.visit address{font-style:normal;font-size:1.06rem;line-height:1.7}
+.visit address a{color:var(--chalk-white)}
+.visit .hours{list-style:none;font-size:1.02rem}
+.visit .hours li{display:flex;justify-content:space-between;gap:1rem;padding:.5em 0;
+  border-bottom:1px solid rgba(251,244,225,.22)}
+.visit .hours li span:last-child{color:#E4D9C4}
+.visit .hours li.closed span:last-child{color:#F0A79B}
+.visit .callout{margin-top:1.2rem;background:var(--tomato);color:#fff;padding:.8em 1em;border-radius:2px;
+  font-weight:600;max-width:fit-content}
+.visit .links{margin-top:1.4rem;display:flex;flex-wrap:wrap;gap:.6em}
+.visit .links a{color:var(--chalk-white);text-decoration:none;border:1px solid rgba(251,244,225,.5);
+  padding:.45em .9em;border-radius:2px}
+.visit .links a:hover{background:var(--wall);color:var(--espresso);border-color:var(--wall)}
+
+/* photo strip */
+.strip{padding:0;background:var(--paper)}
+.strip-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.strip-grid img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/.75;
+  filter:saturate(1.05);transition:filter .4s ease}
+.strip-grid a:hover img{filter:saturate(1.25)}
+
+/* footer */
+footer{background:var(--espresso);color:#CFC4AE;padding:2rem 24px;font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:.6em 2em;align-items:baseline}
+footer a{color:var(--wall)}
+footer .credit{margin-left:auto}
+
+@media (max-width:820px){
+  .story-grid,.visit-grid{grid-template-columns:1fr}
+  .hero-copy{margin-top:-7rem}
+}
+@media (max-width:520px){
+  .strip-grid{grid-template-columns:1fr 1fr}
+  .strip-grid a:last-child{display:none}
+  .plate{border-radius:50%/34%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero .line span{animation:none;transform:none}
+  .hero-photo img{transition:none;transform:none}
+  .board{transition:none;transform:none;opacity:1}
+  .plate,.plate:hover{transition:none;transform:none}
+}
